@@ -15,8 +15,6 @@ local function clone_repo(repo, dir)
   if vim.fn.isdirectory(dir) == 0 then
     print("Cloning " .. repo .. " into " .. dir)
     vim.fn.system({ "git", "clone", "--depth=1", repo_url, dir })
-  else
-    print(repo .. " already installed in " .. dir)
   end
 end
 
