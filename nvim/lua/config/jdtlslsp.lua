@@ -1,4 +1,6 @@
 
+M = {}
+
 local on_attach = function(client, bufnr)
   local buf_map = function(mode, lhs, rhs, opts)
     opts = opts or {}
@@ -31,51 +33,55 @@ local on_attach = function(client, bufnr)
   end) -- List workspace folders
 end
 
+function M.setup()
+
+  vim.diagnostic.config({
+    virtual_text = true,  -- Show inline diagnostics
+    signs = true,         -- Show signs in the gutter
+    underline = true,     -- Underline problematic code
+    update_in_insert = false, -- Update diagnostics while typing in insert mode
+    severity_sort = true, -- Sort diagnostics by severity
+  })
 
 
-vim.diagnostic.config({
-  virtual_text = true,  -- Show inline diagnostics
-  signs = true,         -- Show signs in the gutter
-  underline = true,     -- Underline problematic code
-  update_in_insert = false, -- Update diagnostics while typing in insert mode
-  severity_sort = true, -- Sort diagnostics by severity
-})
+  -- for autocompiltion, delete this if you don't want autocomplition
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+  local home = os.getenv("HOME")
+  local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+  local workspace_dir = home .. "/.workspace/" .. project_name
 
--- for autocompiltion, delete this if you don't want autocomplition
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-local home = os.getenv("HOME")
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-local workspace_dir = home .. "/.workspace/" .. project_name
-
-vim.api.nvim_create_autocmd('FileType', {
-  -- This handler will fire when the buffer's 'filetype' is "python"
-  pattern = 'java',
-  callback = function(ev)
-    vim.lsp.start({
-      name = 'java-jdtls',
-      cmd = {'jdtls', '-data', workspace_dir },
-      capabilities=capabilities,
-      root_dir = vim.fs.root(ev.buf, {'.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle'}),
-      settings = {
+  vim.api.nvim_create_autocmd('FileType', {
+    -- This handler will fire when the buffer's 'filetype' is "java"
+    pattern = 'java',
+    callback = function(ev)
+      vim.lsp.start({
+        name = 'java-jdtls',
+        cmd = {'jdtls', '-data', workspace_dir },
+        capabilities=capabilities,
+        root_dir = vim.fs.root(ev.buf, {'.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle'}),
+        settings = {
           java = {
-              eclipse = { downloadSources = true, },
-              configuration = { updateBuildConfiguration = "interactive", },
-              maven = { downloadSources = true, },
-              implementationsCodeLens = { enabled = true, },
-              referencesCodeLens = { enabled = true, },
-              references = { includeDecompiledSources = true, },
-              format = {
-                  enabled = true,
-                  settings = {
-                      url = home .. '/.config/nvim/eclipse-java-google-style.xml',
-                      profile = "GoogleStyle",
-                  },
+            eclipse = { downloadSources = true, },
+            configuration = { updateBuildConfiguration = "interactive", },
+            maven = { downloadSources = true, },
+            implementationsCodeLens = { enabled = true, },
+            referencesCodeLens = { enabled = true, },
+            references = { includeDecompiledSources = true, },
+            format = {
+              enabled = true,
+              settings = {
+                url = home .. '/.config/nvim/eclipse-java-google-style.xml',
+                profile = "GoogleStyle",
               },
+            },
           },
-      },
-      on_attach=on_attach
-    })
-  end,
-})
+        },
+        on_attach=on_attach
+      })
+    end,
+  })
+
+end
+
+return M

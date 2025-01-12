@@ -147,23 +147,28 @@ vim.opt.directory = os.getenv("HOME") .. "/.vim/swp//"
 -- Map F5 to compile and run the current Java file
 vim.api.nvim_set_keymap('n', '<F5>', ':w<CR>:!javac % && java %:r<CR>', { noremap = true, silent = true })
 
+
+-- Plugins
 require("rpdplug").setup{
   { repo = "nvim-lualine/lualine.nvim", dir = "lualine" },
+
   { repo = "nvim-tree/nvim-tree.lua", dir = "nvim-tree" },
   { repo = "nvim-tree/nvim-web-devicons", dir = "nvim-tree" },
   { repo = "neovim/nvim-lspconfig", dir = "lsp-config" },
+
+  -- nvim cmp plugins
   { repo = "hrsh7th/cmp-nvim-lsp", dir = "auto-complete" },
   { repo = "hrsh7th/cmp-buffer", dir = "auto-complete" },
   { repo = "hrsh7th/cmp-path", dir = "auto-complete" },
   { repo = "hrsh7th/nvim-cmp", dir = "auto-complete" },
-  { repo = "hrsh7th/cmp-vsnip", dir = "auto-complete" },
-  { repo = "hrsh7th/vim-vsnip", dir = "auto-complete" },
+  { repo = "L3MON4D3/LuaSnip", dir = "auto-complete" },
+  { repo = "saadparwaiz1/cmp_luasnip", dir = "auto-complete" },
 }
 
 
 
-
-require("config.jdtlslsp")
+-- Configurations
+require("config.jdtlslsp").setup()
 require("config.nvim-cmp")
 require("config.nvim-tree")
 require('config.lualine')
