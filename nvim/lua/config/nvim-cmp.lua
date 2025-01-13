@@ -18,25 +18,21 @@
     },
     mapping = cmp.mapping.preset.insert({
         -- Tab key behavior
-        ["<Tab>"] = cmp.mapping(function(fallback)
+        ["<Tab>"] = function(fallback)
             if cmp.visible() then
                 cmp.select_next_item() -- Move to the next item in the completion menu
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump() -- Expand or jump to the next snippet placeholder
             else
                 fallback() -- Default behavior (insert a Tab character)
             end
-        end, { "i", "s" }),
+        end,
         -- Shift-Tab behavior
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
+        ["<S-Tab>"] = function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item() -- Move to the previous item in the completion menu
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1) -- Jump to the previous snippet placeholder
             else
                 fallback() -- Default behavior
             end
-        end, { "i", "s" }),
+        end,
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
@@ -45,7 +41,7 @@
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      -- { name = 'vsnip' }, -- For vsnip users.
+      { name = 'nvim_lua' },
       { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
