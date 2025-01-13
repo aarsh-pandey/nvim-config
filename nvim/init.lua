@@ -29,7 +29,7 @@ vim.opt.sidescrolloff = 5
 vim.opt.confirm = true
 
 -- Always show line and column numbers in statusline
-vim.opt.statusline = "%F%m%r%h%w%=(%{&ff}/%Y) (line %l/%L, col %c)"
+-- vim.opt.statusline = "%F%m%r%h%w%=(%{&ff}/%Y) (line %l/%L, col %c)"
 
 -- Enable line break at word boundaries
 vim.opt.linebreak = true
@@ -83,7 +83,8 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Always show statusline, even with one window
-vim.opt.laststatus = 2
+-- Set global status for all windows 
+vim.opt.laststatus = 3
 
 -- ====================================
 --    Search Settings
@@ -161,6 +162,7 @@ require("rpdplug").setup{
   { repo = "hrsh7th/cmp-buffer", dir = "auto-complete" },
   { repo = "hrsh7th/cmp-path", dir = "auto-complete" },
   { repo = "hrsh7th/nvim-cmp", dir = "auto-complete" },
+  { repo = "hrsh7th/cmp-nvim-lua", dir = "auto-complete" },
   { repo = "L3MON4D3/LuaSnip", dir = "auto-complete" },
   { repo = "saadparwaiz1/cmp_luasnip", dir = "auto-complete" },
 }
