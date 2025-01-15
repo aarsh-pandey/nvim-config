@@ -140,9 +140,10 @@ vim.keymap.set('i', '<Down>', '<ESC><CMD>echoe "Use j"<CR>', { noremap = true, s
 vim.keymap.set('n', '<C-K>', '<CMD>bprev<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-J>', '<CMD>bnext<CR>', { noremap = true, silent = true })
 
+vim.keymap.set('n', '<C-A>', 'gg<S-V>G', { noremap = true, silent = true })
 
 -- Swap file path
-vim.opt.directory = os.getenv("HOME") .. "/.vim/swp//"
+vim.opt.directory = os.getenv("HOME") .. "/.config/nvim/swp//"
 
 
 -- Map F5 to compile and run the current Java file
