@@ -41,3 +41,7 @@ luac.out
 
 # MacOS file
 .DS_Store
+
+# Vim Swap files
+swp
+
