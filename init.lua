@@ -146,8 +146,6 @@ vim.keymap.set('i', '<Right>', '<ESC><CMD>echoe "Use l"<CR>', { noremap = true, 
 vim.keymap.set('i', '<Up>', '<ESC><CMD>echoe "Use k"<CR>', { noremap = true, silent = true })
 vim.keymap.set('i', '<Down>', '<ESC><CMD>echoe "Use j"<CR>', { noremap = true, silent = true })
 
-
-
 -- Enable quick buffer switching
 vim.keymap.set('n', '<C-K>', '<CMD>bprev<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-J>', '<CMD>bnext<CR>', { noremap = true, silent = true })
@@ -158,6 +156,21 @@ vim.keymap.set('n', '<C-A>', 'gg<S-V>G', { noremap = true, silent = true })
 -- Remap <Esc> to switch to normal mode only in terminal buffers
 vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], { noremap = true, silent = true })
 
+-- -- Function to toggle a terminal at the bottom
+-- function ToggleTerminal()
+--   local term = vim.fn.bufnr('term://*')  -- Get terminal buffer number
+--   if term == -1 then
+--     -- If no terminal is open, open one at the bottom
+--     vim.cmd('botright split | terminal') 
+--   else
+--     -- If terminal is open, toggle it by closing it
+--     vim.cmd('bdelete ' .. term)
+--   end
+-- end
+--
+-- -- Keybinding to toggle terminal
+-- vim.api.nvim_set_keymap('n', '<Leader>t', ':lua ToggleTerminal()<CR>', { noremap = true, silent = true })
+--
 
 -- Swap file path
 vim.opt.directory = os.getenv("HOME") .. "/.config/nvim/swp//"

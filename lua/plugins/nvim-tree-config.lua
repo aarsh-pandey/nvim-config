@@ -1,7 +1,7 @@
 return {
   "nvim-tree/nvim-tree.lua",
 
-  config = function()
+  init = function()
 
     -- nvim-tree.lua
 
@@ -13,27 +13,28 @@ return {
     vim.opt.termguicolors = true
 
     -- OR setup with some options
-    require("nvim-tree").setup({
-      sort = {
-        sorter = "case_sensitive",
+  end,
+  opts = {
+
+    sort = {
+      sorter = "case_sensitive",
+    },
+    view = {
+      width = 25,
+    },
+    renderer = {
+      group_empty = true,
+    },
+    -- on_attach = function(bufnr)
+      --   local api = require('nvim-tree.api')
+      --   local opts = { buffer = 0, noremap = true, silent = true }
+      --
+      --   -- Toggle hidden files with the period key
+      --   vim.keymap.set('n', '.', api.tree.toggle_hidden_filter, opts)
+      -- end,
+      filters = {
+        dotfiles = false,
+        custom = { "^.DS_Store$" },
       },
-      view = {
-        width = 25,
-      },
-      renderer = {
-        group_empty = true,
-      },
-      -- on_attach = function(bufnr)
-        --   local api = require('nvim-tree.api')
-        --   local opts = { buffer = 0, noremap = true, silent = true }
-        --
-        --   -- Toggle hidden files with the period key
-        --   vim.keymap.set('n', '.', api.tree.toggle_hidden_filter, opts)
-        -- end,
-        filters = {
-          dotfiles = false,
-          custom = { "^.DS_Store$" },
-        },
-      })
-    end
+    }
   }
