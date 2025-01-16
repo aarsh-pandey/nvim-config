@@ -152,7 +152,12 @@ vim.keymap.set('i', '<Down>', '<ESC><CMD>echoe "Use j"<CR>', { noremap = true, s
 vim.keymap.set('n', '<C-K>', '<CMD>bprev<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-J>', '<CMD>bnext<CR>', { noremap = true, silent = true })
 
+-- Select everything in the current buffer
 vim.keymap.set('n', '<C-A>', 'gg<S-V>G', { noremap = true, silent = true })
+
+-- Remap <Esc> to switch to normal mode only in terminal buffers
+vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], { noremap = true, silent = true })
+
 
 -- Swap file path
 vim.opt.directory = os.getenv("HOME") .. "/.config/nvim/swp//"
