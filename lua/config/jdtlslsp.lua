@@ -59,7 +59,7 @@ function M.setup()
         name = 'java-jdtls',
         cmd = {'jdtls', '-data', workspace_dir },
         capabilities=capabilities,
-        root_dir = vim.fs.root(ev.buf, {'.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle'}),
+        root_dir = vim.fs.root(ev.buf, {'.root','.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle'}),
         settings = {
           java = {
             eclipse = { downloadSources = true, },

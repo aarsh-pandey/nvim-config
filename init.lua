@@ -120,7 +120,7 @@ vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.hidden = true
 
 -- Use same register for clipboard and for vim copy paste
-vim.opt.clipboard = "unnamed"
+-- vim.opt.clipboard = "unnamed"
 
 -- ====================================
 --    Key Mappings & Shortcuts
@@ -156,21 +156,10 @@ vim.keymap.set('n', '<C-A>', 'gg<S-V>G', { noremap = true, silent = true })
 -- Remap <Esc> to switch to normal mode only in terminal buffers
 vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], { noremap = true, silent = true })
 
--- -- Function to toggle a terminal at the bottom
--- function ToggleTerminal()
---   local term = vim.fn.bufnr('term://*')  -- Get terminal buffer number
---   if term == -1 then
---     -- If no terminal is open, open one at the bottom
---     vim.cmd('botright split | terminal') 
---   else
---     -- If terminal is open, toggle it by closing it
---     vim.cmd('bdelete ' .. term)
---   end
--- end
---
--- -- Keybinding to toggle terminal
--- vim.api.nvim_set_keymap('n', '<Leader>t', ':lua ToggleTerminal()<CR>', { noremap = true, silent = true })
---
+
+-- Keybinding to toggle terminal
+vim.api.nvim_set_keymap('n', '<Leader>t', ':lua ToggleTerminal()<CR>', { noremap = true, silent = true })
+
 
 -- Swap file path
 vim.opt.directory = os.getenv("HOME") .. "/.config/nvim/swp//"
@@ -178,6 +167,8 @@ vim.opt.directory = os.getenv("HOME") .. "/.config/nvim/swp//"
 
 -- Lazy.nvim plugins
 require("config.lazy")
+require('modules.jump').setup()
+-- require("config.jdtlslsp").setup()
 
 -- Map F5 to compile and run the current Java file
 -- vim.api.nvim_set_keymap('n', '<F5>', ':w<CR>:!javac % && java %:r<CR>', { noremap = true, silent = true })
