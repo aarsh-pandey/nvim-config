@@ -2,7 +2,7 @@ return {
   
     'akinsho/toggleterm.nvim',
     opts = {
-      size = 20,  -- Terminal height when opened at the bottom
+      size = 16,  -- Terminal height when opened at the bottom
       direction = 'horizontal' -- Set terminal to open horizontally at the bottom
     },
     init = function()

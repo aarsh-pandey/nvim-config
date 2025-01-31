@@ -150,6 +150,11 @@ vim.keymap.set('i', '<Down>', '<ESC><CMD>echoe "Use j"<CR>', { noremap = true, s
 vim.keymap.set('n', '<C-K>', '<CMD>bprev<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-J>', '<CMD>bnext<CR>', { noremap = true, silent = true })
 
+-- Delete buffer
+vim.keymap.set('n', '<leader>bd', '<CMD>bd<CR>', { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>e', '<CMD>NvimTreeToggle<CR>', { noremap = true, silent = true })
+
 -- Select everything in the current buffer
 vim.keymap.set('n', '<C-A>', 'gg<S-V>G', { noremap = true, silent = true })
 
