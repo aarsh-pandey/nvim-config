@@ -25,18 +25,12 @@ require("lazy").setup({
     -- import your plugins
     { import = "plugins" },
 
-    -- "nvim-tree/nvim-web-devicons",
-    -- "neovim/nvim-lspconfig",
-    --
-    -- -- nvim cmp plugins
-    -- "hrsh7th/cmp-nvim-lsp",
-    -- "hrsh7th/cmp-buffer",
-    -- "hrsh7th/cmp-path",
-    -- "hrsh7th/nvim-cmp",
-    -- "hrsh7th/cmp-nvim-lua",
-    -- "L3MON4D3/LuaSnip",
-    -- "saadparwaiz1/cmp_luasnip",
   },
+  checker = {
+    enabled = false,-- automatically check for plugin updates
+    notify = false, -- get a notification when new updates are found
+  },
+  auto_update = false,
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "habamax" } },
