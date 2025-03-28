@@ -13,7 +13,7 @@ vim.opt.compatible = false
 -- ====================================
 
 -- Use 'retrobox' color scheme
-vim.cmd("colorscheme retrobox")
+vim.cmd.colorscheme("retrobox")
 
 -- Enable cursorline for current line highlight
 vim.opt.cursorline = true
@@ -156,7 +156,7 @@ vim.keymap.set('n', '<leader>bd', '<CMD>bd<CR>', { noremap = true, silent = true
 vim.keymap.set('n', '<leader>e', '<CMD>NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 -- Select everything in the current buffer
-vim.keymap.set('n', '<C-A>', 'gg<S-V>G', { noremap = true, silent = true })
+vim.keymap.set('n', 'å', 'gg<S-V>G', { noremap = true, silent = true })
 
 -- Remap <Esc> to switch to normal mode only in terminal buffers
 vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], { noremap = true, silent = true })
@@ -172,8 +172,8 @@ vim.opt.directory = os.getenv("HOME") .. "/.config/nvim/swp//"
 
 -- Lazy.nvim plugins
 require("config.lazy")
-require('modules.jump').setup()
--- require("config.jdtlslsp").setup()
+require("config.lsp")
+
 
 -- Map F5 to compile and run the current Java file
 -- vim.api.nvim_set_keymap('n', '<F5>', ':w<CR>:!javac % && java %:r<CR>', { noremap = true, silent = true })
