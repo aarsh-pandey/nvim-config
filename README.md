@@ -1,5 +1,5 @@
 # nvim-config
-My neovim configuration
+My neovim configuration.
 
 ***
 For MacOS/Linux.
